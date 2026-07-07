@@ -1,34 +1,61 @@
 # Thrivo Backend
 
-[![Database](https://img.shields.io/badge/Database-PostgreSQL%20(Supabase)-blue.svg?logo=postgresql&logoColor=white)](https://supabase.com)
-[![Runtime](https://img.shields.io/badge/Runtime-Node.js%20v20.x-green.svg?logo=nodedotjs&logoColor=white)](https://nodejs.org)
-[![Security](https://img.shields.io/badge/Security-AES--256%20%7C%20Supabase%20RLS-success.svg)](#)
-[![License](https://img.shields.io/badge/License-Proprietary-red.svg)](#)
-
-Welcome to the backend repository for **Thrivo Web Application** — a secure, high-trust, multi-sided discovery ecosystem. 
-
-This repository houses the database schemas, API server logic, secure webhook handlers, real-time connection gateways, and automated trust layer architectures that power the Thrivo Web Client.
+Welcome to the backend repository for the Thrivo ecosystem — a unified, decoupled multi-tenant backend architecture designed to serve custom operational endpoints optimized for both the web application and mobile clients.
 
 ---
 
 ## Technology Stack & Infrastructure
 
-- **Database:** Supabase (PostgreSQL)
-- **Real-Time Layer:** Socket.io (Node.js) & Supabase Realtime
-- **Authentication:** Supabase Auth (Google & Email provider) with custom DPDP consent workflows
-- **Storage:** Supabase Storage (AES-256 encrypted at rest for sensitive data like NDAs and pitch decks)
-- **Payment Processing:** Razorpay API & Webhook handler
-- **Push Notifications:** Firebase Admin SDK (Node.js)
-- **Deployment/Hosting:** Docker containers / Supabase Edge Functions
+- **Application Backend API:** Node.js, NestJS Framework, Fastify Core Transport Engine (TypeScript-native enterprise-grade modular routing layout for high performance and low memory allocation).
+- **Database & Cache Engine:** Distributed PostgreSQL, Supabase Auth Core, Redis Stack Cluster (coordinating real-time signaling layers and immediate volatile cache).
+- **File & Media Routing:** AWS S3 Storage Clusters, Cloudflare R2 (zero-egress fees), and Cloudflare Stream CDN (device-optimized video transcoding pipeline).
 
 ---
 
-## Security & Compliance (DPDP-Ready)
+## Production Database Architecture
 
-Thrivo is designed from the ground up to protect intellectual property and user privacy:
-1. **Supabase Row Level Security (RLS):** Policies are mathematically set up so that only verified, founder-approved accounts (such as accredited investors who signed a specific NDA) can read sensitive financial metrics.
-2. **IP & NDA Protections:** Secure digital signing engine verifying contracts and logging audit trails on-chain or through encrypted logs.
-3. **Data Protection:** Implements TLS 1.3 for transit, AES-256 for private PDFs/metrics, and complies with India's **DPDP Act (Digital Personal Data Protection Act, 2023)** (explicit consent log, data minimization, 72-hour breach response plan).
+The database architecture implements a polymorphic identity pattern coupled with concrete extensions to support maximum system structural speed while guaranteeing strong isolated state consistency.
+
+### Systemic Structural Validation Rule
+The fundamental constraint asserts that transaction flow matches exactly across the node ecosystem:
+
+$$\text{T\_balance} = \sum \text{Escrow\_credits} - \sum \text{Disbursed\_debits}$$
+
+Every user object maintains global role tracking flags to permit cross-tenant identity traversal without record cloning.
+
+### Concrete Schemas
+
+1. **Core User Model Ledger (`users`)**
+   - `id`: uuid (PRIMARY KEY, DEFAULT gen_random_uuid())
+   - `email`: varchar(255) (UNIQUE, INDEXED)
+   - `password_hash`: varchar(512) (Argon2id secure structure)
+   - `role_flags`: bits(4) (Position maps: [Founder, Creator, Investor, Consumer])
+   - `is_verified`: boolean (DEFAULT false)
+   - `created_at`: timestamp with time zone (DEFAULT now())
+
+2. **Founder Extensions (`founder_profiles`)**
+   - `id`: uuid (PRIMARY KEY, REFERENCES users(id) ON DELETE CASCADE)
+   - `company_name`: varchar(255)
+   - `legal_entity_identifier`: varchar(100)
+   - `pitch_deck_url`: varchar(2048) (Authenticated S3 reference only)
+   - `funding_goal`: numeric(15, 2)
+
+3. **Escrow Transaction Ledger (`escrow_deals`)**
+   - `id`: uuid (PRIMARY KEY)
+   - `creator_id`: uuid (REFERENCES users(id))
+   - `founder_id`: uuid (REFERENCES users(id))
+   - `contracted_amount`: numeric(12, 2)
+   - `escrow_status`: enum('funds_deposited', 'milestone_1_released', 'completed', 'disputed')
+
+---
+
+## Low-Latency System Security Strategy
+
+### Biometric Access & Token Control Loop
+Client communication cycles rely on dual JWT configurations (short-lived access parameters with a lifespan of 15 minutes alongside a sliding renewal token expiring in 7 days). On mobile layers, renewal keys are sealed natively within hardware-encrypted secure storage blocks triggered by biometric authentication signatures (iOS FaceID / Android BiometricPrompt APIs).
+
+### Creator Likeness Digital Signature Verification
+To prevent generative identity exploitation or unauthorized duplication of promotional media assets, every piece of video material uploaded by verified creators undergoes server-side frame analysis and receives a metadata-injected cryptographic watermarking footprint using SHA-256 block chains before propagation across CDN edge caches.
 
 ---
 
@@ -36,22 +63,19 @@ Thrivo is designed from the ground up to protect intellectual property and user 
 
 ```
 thrivo-backend/
-├── supabase/                 # Supabase configuration directory
-│   ├── migrations/           # Database migration files (DQL/DDL)
-│   ├── config.toml           # Supabase environment configuration
-│   └── functions/            # Supabase Edge Functions (Deno runtime)
-│       ├── razorpay-webhook/ # Handles Razorpay payment confirmations
-│       └── document-signer/  # Handles secure NDA digital signatures
-├── src/                      # Express/Node.js API & Socket.io server
-│   ├── index.js              # Entry point
-│   ├── config/               # Database, firebase, and global configs
-│   ├── controllers/          # Business logic controllers
-│   ├── middleware/           # Auth validation, DPDP consent checks, rate-limiting
-│   ├── models/               # Database schema models (Postgres adapters)
-│   └── sockets/              # Socket.io handlers for real-time messaging
-├── tests/                    # Integration and unit tests
+├── src/                      # NestJS TypeScript codebase
+│   ├── app.module.ts         # Main Application Module
+│   ├── main.ts               # Application entry point using Fastify adapter
+│   ├── auth/                 # Supabase Auth Core service & Biometric Token verification
+│   ├── users/                # Users management modules
+│   ├── profiles/             # Polymorphic profile extensions (Founders, Creators)
+│   ├── escrow/               # Escrow deals tracking & ledger verification engine
+│   ├── media/                # AWS S3 / Cloudflare R2 / Cloudflare Stream controller
+│   └── websocket/            # Redis Stack-coordinated Socket.io signaling layers
+├── prisma/                   # Prisma Schema for PostgreSQL relations
+│   └── schema.prisma
 ├── Dockerfile                # Deployment container configuration
-└── package.json              # Node.js dependencies
+└── package.json              # NestJS dependencies & build scripts
 ```
 
 ---
@@ -61,9 +85,7 @@ thrivo-backend/
 ### Prerequisites
 
 - Node.js (v20.x or higher)
-- Docker (for local Supabase dev environment)
-- Supabase CLI
-- PostgreSQL client tool (optional)
+- Docker (for local database & Redis Stack services)
 
 ### Local Development Setup
 
@@ -78,34 +100,33 @@ thrivo-backend/
    npm install
    ```
 
-3. Initialize local Supabase stack:
-   ```bash
-   supabase init
-   supabase start
-   ```
-
-4. Set up environment variables:
+3. Set up environment variables:
    Create a `.env` file in the root directory:
    ```env
    PORT=5000
-   DATABASE_URL=postgresql://postgres:postgres@localhost:54322/postgres
-   SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-   RAZORPAY_KEY_ID=your-razorpay-key
-   RAZORPAY_KEY_SECRET=your-razorpay-secret
-   FIREBASE_SERVICE_ACCOUNT_PATH=./config/firebase-service-account.json
+   DATABASE_URL=postgresql://postgres:postgres@localhost:5432/postgres
+   REDIS_URL=redis://localhost:6379
+   SUPABASE_URL=https://your-project.supabase.co
+   SUPABASE_JWT_SECRET=your-jwt-secret
+   R2_BUCKET_NAME=thrivo-pitches
+   R2_ACCESS_KEY_ID=your-access-key
+   R2_SECRET_ACCESS_KEY=your-secret-key
    ```
 
-5. Start the Node.js Socket.io / API server:
+4. Start the NestJS API server in development mode:
    ```bash
-   npm run dev
+   npm run start:dev
    ```
 
 ---
 
 ## Testing
 
-We target `>70%` code coverage before merging changes into `main`.
+We target high code coverage before merging changes into the main branch.
 ```bash
-# Run unit and integration tests
-npm test
+# Run unit tests
+npm run test
+
+# Run end-to-end tests
+npm run test:e2e
 ```
