@@ -1,5 +1,10 @@
 # Thrivo Backend
 
+[![Backend Stack](https://img.shields.io/badge/Stack-NestJS%20%7C%20Fastify-red.svg?logo=nestjs&logoColor=white)](#)
+[![Database](https://img.shields.io/badge/Database-PostgreSQL%20%7C%20Redis-blue.svg?logo=postgresql&logoColor=white)](#)
+[![Storage](https://img.shields.io/badge/Storage-Cloudflare%20R2%20%7C%20S3-orange.svg)](#)
+[![License](https://img.shields.io/badge/License-Proprietary-red.svg)](#)
+
 Welcome to the backend repository for the Thrivo ecosystem — a unified, decoupled multi-tenant backend architecture designed to serve custom operational endpoints optimized for both the web application and mobile clients.
 
 ---
