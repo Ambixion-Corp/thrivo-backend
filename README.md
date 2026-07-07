@@ -5,9 +5,9 @@
 [![Security](https://img.shields.io/badge/Security-AES--256%20%7C%20Supabase%20RLS-success.svg)](#)
 [![License](https://img.shields.io/badge/License-Proprietary-red.svg)](#)
 
-Welcome to the backend repository for **Thrivo** — a secure, high-trust, multi-sided discovery ecosystem. 
+Welcome to the backend repository for **Thrivo Web Application** — a secure, high-trust, multi-sided discovery ecosystem. 
 
-This repository houses the database schemas, API server logic, secure webhook handlers, real-time connection gateways, and automated trust layer architectures.
+This repository houses the database schemas, API server logic, secure webhook handlers, real-time connection gateways, and automated trust layer architectures that power the Thrivo Web Client.
 
 ---
 
