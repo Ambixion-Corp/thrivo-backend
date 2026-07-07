@@ -1,4 +1,4 @@
-# Thrivo Backend ⚙️
+# Thrivo Backend
 
 [![Database](https://img.shields.io/badge/Database-PostgreSQL%20(Supabase)-blue.svg?logo=postgresql&logoColor=white)](https://supabase.com)
 [![Runtime](https://img.shields.io/badge/Runtime-Node.js%20v20.x-green.svg?logo=nodedotjs&logoColor=white)](https://nodejs.org)
@@ -11,7 +11,7 @@ This repository houses the database schemas, API server logic, secure webhook ha
 
 ---
 
-## 🛠️ Technology Stack & Infrastructure
+## Technology Stack & Infrastructure
 
 - **Database:** Supabase (PostgreSQL)
 - **Real-Time Layer:** Socket.io (Node.js) & Supabase Realtime
@@ -23,7 +23,7 @@ This repository houses the database schemas, API server logic, secure webhook ha
 
 ---
 
-## 🛡️ Security & Compliance (DPDP-Ready)
+## Security & Compliance (DPDP-Ready)
 
 Thrivo is designed from the ground up to protect intellectual property and user privacy:
 1. **Supabase Row Level Security (RLS):** Policies are mathematically set up so that only verified, founder-approved accounts (such as accredited investors who signed a specific NDA) can read sensitive financial metrics.
@@ -32,7 +32,7 @@ Thrivo is designed from the ground up to protect intellectual property and user 
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```
 thrivo-backend/
@@ -56,7 +56,7 @@ thrivo-backend/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -102,7 +102,7 @@ thrivo-backend/
 
 ---
 
-## 🧪 Testing
+## Testing
 
 We target `>70%` code coverage before merging changes into `main`.
 ```bash
