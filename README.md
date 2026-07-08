@@ -42,7 +42,7 @@ thrivo-backend/
 │   └── functions/            # Supabase Edge Functions (Deno runtime)
 │       ├── razorpay-webhook/ # Handles Razorpay payment confirmations
 │       └── document-signer/  # Handles secure NDA digital signatures
-├── src/                      # Express/Node.js API & Socket.io server
+├── src/                      # NestJS/Fastify API & Socket.io server
 │   ├── index.js              # Entry point
 │   ├── config/               # Database, firebase, and global configs
 │   ├── controllers/          # Business logic controllers
