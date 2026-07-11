@@ -1,0 +1,53 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum EscrowStatus {
+  funds_deposited
+  milestone_1_released
+  completed
+  disputed
+}
+
+model User {
+  id            String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email         String          @unique @db.VarChar(255)
+  password_hash String          @db.VarChar(512)
+  role_flags    String          @db.VarChar(4) // 4-bit representation mapped to [Founder, Creator, Investor, Consumer]
+  is_verified   Boolean         @default(false)
+  created_at    DateTime        @default(now()) @db.Timestamptz
+
+  founder_profile FounderProfile?
+  escrow_creator  EscrowDeal[]    @relation("CreatorDeals")
+  escrow_founder  EscrowDeal[]    @relation("FounderDeals")
+
+  @@map("users")
+}
+
+model FounderProfile {
+  id                       String  @id @db.Uuid
+  user                     User    @relation(fields: [id], references: [id], onDelete: Cascade)
+  company_name             String  @db.VarChar(255)
+  legal_entity_identifier  String  @db.VarChar(100)
+  pitch_deck_url           String  @db.VarChar(2048) // Authenticated Cloudflare R2 / AWS S3 reference only
+  funding_goal             Decimal @db.Decimal(15, 2)
+
+  @@map("founder_profiles")
+}
+
+model EscrowDeal {
+  id                String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  creator_id        String       @db.Uuid
+  founder_id        String       @db.Uuid
+  contracted_amount Decimal      @db.Decimal(12, 2)
+  escrow_status     EscrowStatus
+
+  creator           User         @relation("CreatorDeals", fields: [creator_id], references: [id], onDelete: Restrict)
+  founder           User         @relation("FounderDeals", fields: [founder_id], references: [id], onDelete: Restrict)
+
+  @@map("escrow_deals")
+}
