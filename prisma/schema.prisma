@@ -21,9 +21,11 @@ model User {
   is_verified   Boolean         @default(false)
   created_at    DateTime        @default(now()) @db.Timestamptz
 
-  founder_profile FounderProfile?
-  escrow_creator  EscrowDeal[]    @relation("CreatorDeals")
-  escrow_founder  EscrowDeal[]    @relation("FounderDeals")
+  founder_profile  FounderProfile?
+  creator_profile  CreatorProfile?
+  investor_profile InvestorProfile?
+  escrow_creator   EscrowDeal[]     @relation("CreatorDeals")
+  escrow_founder   EscrowDeal[]     @relation("FounderDeals")
 
   @@map("users")
 }
@@ -37,6 +39,34 @@ model FounderProfile {
   funding_goal             Decimal @db.Decimal(15, 2)
 
   @@map("founder_profiles")
+}
+
+model CreatorProfile {
+  id               String @id @db.Uuid
+  user             User   @relation(fields: [id], references: [id], onDelete: Cascade)
+  handle           String @db.VarChar(100)
+  bio              String @db.Text
+  primary_platform String @db.VarChar(50)
+  audience_size    String @db.VarChar(50)
+  engagement_rate  String @db.VarChar(20)
+  top_sectors      String @db.Text // Comma-separated list or tags
+  past_sponsors    String @db.Text // Comma-separated list or tags
+
+  @@map("creator_profiles")
+}
+
+model InvestorProfile {
+  id             String   @id @db.Uuid
+  user           User     @relation(fields: [id], references: [id], onDelete: Cascade)
+  fund_name      String   @db.VarChar(255)
+  tagline        String   @db.VarChar(255)
+  location       String   @db.VarChar(255)
+  aum            Decimal? @db.Decimal(15, 2)
+  focus_sectors  String   @db.Text
+  min_check_size Decimal  @db.Decimal(15, 2)
+  max_check_size Decimal  @db.Decimal(15, 2)
+
+  @@map("investor_profiles")
 }
 
 model EscrowDeal {
