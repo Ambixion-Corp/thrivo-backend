@@ -11,7 +11,7 @@ export class AuthService {
     if (!token) {
       throw new UnauthorizedException('Token missing');
     }
-    
+
     // Simulate decoding/verifying the 15-minute access token or 7-day sliding token
     try {
       // In a real setup, we verify with JWT library. For this skeleton, we stub payload.

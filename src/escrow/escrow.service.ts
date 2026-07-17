@@ -13,7 +13,9 @@ export class EscrowService {
     // Validate constraint before finalizing deal
     const isLedgerConsistent = await this.verifyLedgerIntegrity();
     if (!isLedgerConsistent) {
-      throw new BadRequestException('Database Ledger Consistency Constraint Violated.');
+      throw new BadRequestException(
+        'Database Ledger Consistency Constraint Violated.',
+      );
     }
 
     return this.prisma.escrowDeal.create({
@@ -34,9 +36,9 @@ export class EscrowService {
         contracted_amount: true,
       },
     });
-    
+
     const totalEscrowCredits = aggregations._sum.contracted_amount || 0;
-    
+
     // Stub logic to demonstrate constraint matching:
     // T_balance should be exactly equal to totalEscrowCredits minus disbursements.
     return true;
