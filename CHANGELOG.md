@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.3](https://github.com/Ambixion-Corp/thrivo-backend/compare/thrivo-backend-v0.0.2...thrivo-backend-v0.0.3) (2026-08-14)
+
+
+### Documentation
+
+* document automated changelog and releases in README ([#36](https://github.com/Ambixion-Corp/thrivo-backend/issues/36)) ([eedf3af](https://github.com/Ambixion-Corp/thrivo-backend/commit/eedf3af4e848b009aacfa1001e778cf6de51ebbf))
+
 ## [0.0.2](https://github.com/Ambixion-Corp/thrivo-backend/compare/thrivo-backend-v0.0.1...thrivo-backend-v0.0.2) (2026-08-12)
 
 
