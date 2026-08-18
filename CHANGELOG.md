@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.0.4](https://github.com/Ambixion-Corp/thrivo-backend/compare/thrivo-backend-v0.0.3...thrivo-backend-v0.0.4) (2026-08-18)
+
+
+### Build System
+
+* **deps-dev:** bump typescript-eslint from 8.66.0 to 8.67.0 ([feaf817](https://github.com/Ambixion-Corp/thrivo-backend/commit/feaf8173bcd9b3e2b66d238677ff4f3d85a2c644))
+* **deps-dev:** bump typescript-eslint from 8.66.0 to 8.67.0 ([7000e40](https://github.com/Ambixion-Corp/thrivo-backend/commit/7000e40788ffd367b8ee7814c5ecca77f0af9a5c))
+* **deps:** bump fastify from 5.11.3 to 5.12.0 ([ea35e96](https://github.com/Ambixion-Corp/thrivo-backend/commit/ea35e960417ed237a6a3fad0b562544dfa38bcc7))
+* **deps:** bump fastify from 5.11.3 to 5.12.0 ([e7a562a](https://github.com/Ambixion-Corp/thrivo-backend/commit/e7a562a89b1fd9848cd273afecb0a4c174369863))
+* **deps:** bump github/codeql-action from 4.37.6 to 4.37.7 ([7340f2d](https://github.com/Ambixion-Corp/thrivo-backend/commit/7340f2dc182018c447cfe0877af0fff32b2bb9f0))
+* **deps:** bump github/codeql-action from 4.37.6 to 4.37.7 ([2cd7296](https://github.com/Ambixion-Corp/thrivo-backend/commit/2cd72965023fda2dbba2790bdb3cb407281f266f))
+* **deps:** bump googleapis/release-please-action from 4 to 5 ([2bca801](https://github.com/Ambixion-Corp/thrivo-backend/commit/2bca80152a35a7940dc5e8d03f2ab28e0447143e))
+* **deps:** bump googleapis/release-please-action from 4 to 5 ([ddefaad](https://github.com/Ambixion-Corp/thrivo-backend/commit/ddefaad37f13fbbd0722cf5994558ad4df57707d))
+
 ## [0.0.3](https://github.com/Ambixion-Corp/thrivo-backend/compare/thrivo-backend-v0.0.2...thrivo-backend-v0.0.3) (2026-08-14)
 
 
