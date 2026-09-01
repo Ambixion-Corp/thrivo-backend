@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.0.5](https://github.com/Ambixion-Corp/thrivo-backend/compare/thrivo-backend-v0.0.4...thrivo-backend-v0.0.5) (2026-09-01)
+
+
+### Build System
+
+* **deps-dev:** bump eslint from 10.8.1 to 10.9.0 ([#47](https://github.com/Ambixion-Corp/thrivo-backend/issues/47)) ([6b8a0c2](https://github.com/Ambixion-Corp/thrivo-backend/commit/6b8a0c2b1cf2256dd2a9f14364f5bf4a05a09e2f))
+* **deps:** bump github/codeql-action from 4.37.7 to 4.37.9 ([#50](https://github.com/Ambixion-Corp/thrivo-backend/issues/50)) ([c825d12](https://github.com/Ambixion-Corp/thrivo-backend/commit/c825d12ab21855b9ca92680046e010ed12f00062))
+
 ## [0.0.4](https://github.com/Ambixion-Corp/thrivo-backend/compare/thrivo-backend-v0.0.3...thrivo-backend-v0.0.4) (2026-08-18)
 
 
