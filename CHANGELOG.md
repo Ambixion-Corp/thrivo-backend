@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.7](https://github.com/Ambixion-Corp/thrivo-backend/compare/thrivo-backend-v0.0.6...thrivo-backend-v0.0.7) (2026-09-29)
+
+
+### Build System
+
+* **deps:** bump github/codeql-action from 4.38.1 to 4.38.2 ([#60](https://github.com/Ambixion-Corp/thrivo-backend/issues/60)) ([7b4c9fc](https://github.com/Ambixion-Corp/thrivo-backend/commit/7b4c9fcc369a0dd793c122a34ac191acc48beeb3))
+
 ## [0.0.6](https://github.com/Ambixion-Corp/thrivo-backend/compare/thrivo-backend-v0.0.5...thrivo-backend-v0.0.6) (2026-09-23)
 
 
