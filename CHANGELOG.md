@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.0.8](https://github.com/Ambixion-Corp/thrivo-backend/compare/thrivo-backend-v0.0.7...thrivo-backend-v0.0.8) (2026-11-22)
+
+
+### Build System
+
+* **deps:** bump github/codeql-action from 4.38.2 to 4.38.3 ([#62](https://github.com/Ambixion-Corp/thrivo-backend/issues/62)) ([764540e](https://github.com/Ambixion-Corp/thrivo-backend/commit/764540eb0a9b125bf9b45e43c8350a3a8b67aa42))
+* **deps:** bump github/codeql-action from 4.38.3 to 4.39.0 ([d9689ee](https://github.com/Ambixion-Corp/thrivo-backend/commit/d9689eecf37e92a7c80a87633671a35086679e67))
+* **deps:** bump github/codeql-action from 4.38.3 to 4.39.0 ([571c97a](https://github.com/Ambixion-Corp/thrivo-backend/commit/571c97a7472f65504c6b03eef09813f80f8d9aaa))
+* **deps:** bump github/codeql-action from 4.39.0 to 4.39.3 ([#66](https://github.com/Ambixion-Corp/thrivo-backend/issues/66)) ([ffd6a2d](https://github.com/Ambixion-Corp/thrivo-backend/commit/ffd6a2daef094b78c9add24c55cf4a6e0e3f04d2))
+
 ## [0.0.7](https://github.com/Ambixion-Corp/thrivo-backend/compare/thrivo-backend-v0.0.6...thrivo-backend-v0.0.7) (2026-09-29)
 
 
